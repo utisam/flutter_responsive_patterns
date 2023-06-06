@@ -1,0 +1,7 @@
+{
+    "reposition": "Reposition",
+    "repositionDescription": "A way to rearrange widgets depending on whether the display area is landscape or portrait.",
+
+    "wrap": "Wrap",
+    "wrapDescription": "Wrap widget can layout widgets like text."
+}

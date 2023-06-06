@@ -1,0 +1,30 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Watch build_runner",
+            "type": "flutter",
+            "command": "dart",
+            "args": [
+                "run",
+                "build_runner",
+                "watch",
+                "--delete-conflicting-outputs"
+            ]
+        },
+        {
+            "label": "Watch l10n",
+            "type": "process",
+            "command": "watchman-make",
+            "args": [
+                "-p",
+                "lib/l10n/*.arb",
+                "-r",
+                "flutter gen-l10n"
+            ],
+            "problemMatcher": []
+        },
+    ],
+}
