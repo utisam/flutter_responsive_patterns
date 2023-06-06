@@ -15,4 +15,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get wrapDescription => 'Wrap widget can layout widgets like text.';
+
+  @override
+  String get rearchitect => 'Re-architect';
+
+  @override
+  String get rearchitectDescription => 'Split it into two pages for smaller screens and re-architect them as one for larger screens.';
 }

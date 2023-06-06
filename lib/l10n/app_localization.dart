@@ -114,6 +114,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Wrap widget can layout widgets like text.'**
   String get wrapDescription;
+
+  /// No description provided for @rearchitect.
+  ///
+  /// In en, this message translates to:
+  /// **'Re-architect'**
+  String get rearchitect;
+
+  /// No description provided for @rearchitectDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Split it into two pages for smaller screens and re-architect them as one for larger screens.'**
+  String get rearchitectDescription;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

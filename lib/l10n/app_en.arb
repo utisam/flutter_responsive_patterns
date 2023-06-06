@@ -3,5 +3,9 @@
     "repositionDescription": "A way to rearrange widgets depending on whether the display area is landscape or portrait.",
 
     "wrap": "Wrap",
-    "wrapDescription": "Wrap widget can layout widgets like text."
+    "wrapDescription": "Wrap widget can layout widgets like text.",
+
+
+    "rearchitect": "Re-architect",
+    "rearchitectDescription": "Split it into two pages for smaller screens and re-architect them as one for larger screens."
 }
