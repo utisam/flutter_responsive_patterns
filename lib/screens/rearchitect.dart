@@ -16,25 +16,19 @@ class RearchitectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
     final navigatorKey = GlobalKey<NavigatorState>();
     final routes = <String, WidgetBuilder>{
       'amber': (context) => const _Detail(color: Colors.amber),
       'blue': (context) => const _Detail(color: Colors.blue),
       'green': (context) => const _Detail(color: Colors.green),
     };
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.rearchitect),
-      ),
-      body: LayoutBuilder(builder: ((context, constraints) {
-        if (constraints.maxWidth < 480) {
-          return _MobileLayout(navigatorKey: navigatorKey, routes: routes);
-        } else {
-          return _LargeLayout(navigatorKey: navigatorKey, routes: routes);
-        }
-      })),
-    );
+    return LayoutBuilder(builder: ((context, constraints) {
+      if (constraints.maxWidth < 480) {
+        return _MobileLayout(navigatorKey: navigatorKey, routes: routes);
+      } else {
+        return _LargeLayout(navigatorKey: navigatorKey, routes: routes);
+      }
+    }));
   }
 }
 
@@ -45,17 +39,12 @@ class _Detail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final navigator = Navigator.of(context);
-    return Container(
-      color: color,
-      child: Center(
-        child: ElevatedButton(
-          child: const Text('Back'),
-          onPressed: () {
-            navigator.pop();
-          },
-        ),
+    return Scaffold(
+      backgroundColor: color,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
       ),
+      body: Container(),
     );
   }
 }
@@ -90,6 +79,7 @@ class _DetailNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final parentNavigator = Navigator.of(context);
     return _DefaultWidgetProvider(
       builder: defaultWidgetBuiler,
       child: Navigator(
@@ -100,8 +90,22 @@ class _DetailNavigator extends StatelessWidget {
               routes[settings.name] ?? (context) => _DefaultDetail();
           return MaterialPageRoute<void>(builder: builder, settings: settings);
         },
+        observers: [_LastPopObserver(() => parentNavigator.pop())],
       ),
     );
+  }
+}
+
+class _LastPopObserver extends NavigatorObserver {
+  final VoidCallback onLastPop;
+
+  _LastPopObserver(this.onLastPop);
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    if (previousRoute == null) {
+      onLastPop();
+    }
   }
 }
 
@@ -136,31 +140,43 @@ class _Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final contextNavigator = Navigator.of(context);
-    return ListView(
-      children: [
-        ListTile(
-          title: const Text('Amber'),
-          onTap: () {
-            final navigator = navigatorKey?.currentState ?? contextNavigator;
-            unawaited(navigator.pushNamed('amber'));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l10n.rearchitect),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: () {
+            contextNavigator.pop();
           },
         ),
-        ListTile(
-          title: const Text('Blue'),
-          onTap: () {
-            final navigator = navigatorKey?.currentState ?? contextNavigator;
-            unawaited(navigator.pushNamed('blue'));
-          },
-        ),
-        ListTile(
-          title: const Text('Green'),
-          onTap: () {
-            final navigator = navigatorKey?.currentState ?? contextNavigator;
-            unawaited(navigator.pushNamed('green'));
-          },
-        ),
-      ],
+      ),
+      body: ListView(
+        children: [
+          ListTile(
+            title: const Text('Amber'),
+            onTap: () {
+              final navigator = navigatorKey?.currentState ?? contextNavigator;
+              unawaited(navigator.pushNamed('amber'));
+            },
+          ),
+          ListTile(
+            title: const Text('Blue'),
+            onTap: () {
+              final navigator = navigatorKey?.currentState ?? contextNavigator;
+              unawaited(navigator.pushNamed('blue'));
+            },
+          ),
+          ListTile(
+            title: const Text('Green'),
+            onTap: () {
+              final navigator = navigatorKey?.currentState ?? contextNavigator;
+              unawaited(navigator.pushNamed('green'));
+            },
+          ),
+        ],
+      ),
     );
   }
 }
