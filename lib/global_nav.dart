@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_responsive_patterns/l10n/app_localization.dart';
-import 'package:flutter_responsive_patterns/screens/rearchitect.dart';
+import 'package:flutter_responsive_patterns/screens/rearchitect_screen.dart';
 import 'package:flutter_responsive_patterns/screens/reposition_screen.dart';
 import 'package:flutter_responsive_patterns/screens/wrap_screen.dart';
 
