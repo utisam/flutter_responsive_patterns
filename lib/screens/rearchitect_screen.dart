@@ -1,3 +1,6 @@
+// Re-architect
+// https://learn.microsoft.com/en-us/windows/apps/design/layout/responsive-design#re-architect
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';

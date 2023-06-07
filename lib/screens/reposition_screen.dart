@@ -1,3 +1,6 @@
+// Reposition
+// https://learn.microsoft.com/en-us/windows/apps/design/layout/responsive-design#reposition
+
 import 'package:flutter/material.dart';
 import 'package:flutter_responsive_patterns/global_nav.dart';
 import 'package:flutter_responsive_patterns/l10n/app_localization.dart';
